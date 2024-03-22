@@ -9,6 +9,10 @@ module "vpc" {
   private_subnets = [cidrsubnet(var.aws_vpc_cidr, 8, 0), cidrsubnet(var.aws_vpc_cidr, 8, 1), cidrsubnet(var.aws_vpc_cidr, 8, 2)]
   public_subnets  = [cidrsubnet(var.aws_vpc_cidr, 8, 128), cidrsubnet(var.aws_vpc_cidr, 8, 129), cidrsubnet(var.aws_vpc_cidr, 8, 130)]
 
+  vpc_tags = {
+    "fiap-vpc" = "true"
+  }
+
   public_subnet_tags = {
     "fiap-public-subnet" = "true"
   }
