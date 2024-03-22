@@ -11,7 +11,7 @@ resource "aws_lb" "lb_vpclink" {
 resource "aws_lb_listener" "lb_vpclink" {
   load_balancer_arn = aws_lb.lb_vpclink.arn
   port              = 80
-  protocol          = "HTTP"
+  protocol          = "TCP"
 
   default_action {
     type             = "forward"
