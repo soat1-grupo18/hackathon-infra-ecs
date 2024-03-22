@@ -2,7 +2,7 @@ resource "aws_lb" "lb_ingress" {
   name               = "fiap-lb-ingress"
   internal           = true
   load_balancer_type = "network"
-  subnets            = data.aws_subnets.default.ids
+  subnets            = module.vpc.private_subnets
 
   enable_deletion_protection       = false
   enable_cross_zone_load_balancing = true
