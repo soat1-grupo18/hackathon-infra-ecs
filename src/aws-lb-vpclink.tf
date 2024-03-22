@@ -28,7 +28,7 @@ resource "aws_lb_target_group" "lb_vpclink" {
 }
 
 resource "aws_lb_target_group_attachment" "lb_vpclink" {
-  target_group_arn = aws_lb.lb_ingress.arn
+  target_group_arn = aws_lb_target_group.lb_vpclink.arn
   target_id        = aws_lb.lb_ingress.id
   port             = 80
 }
