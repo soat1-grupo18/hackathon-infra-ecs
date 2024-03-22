@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket         = "289389227463-terraform-backend"
-    key            = "terraform-ecs-deployment-types/plataform.tfstate"
+    key            = "github/soat1-grupo18/hackathon-infra-ecs.tfstate"
     dynamodb_table = "289389227463-terraform-backend"
     region         = "sa-east-1"
   }

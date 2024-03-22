@@ -1,8 +1,7 @@
 resource "aws_lb" "lb_ingress" {
-  name               = "my-lb-ingress"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.lb_ingress.id]
+  name               = "fiap-lb-ingress"
+  internal           = true
+  load_balancer_type = "network"
   subnets            = data.aws_subnets.default.ids
 
   enable_deletion_protection       = false
@@ -11,30 +10,8 @@ resource "aws_lb" "lb_ingress" {
 
 resource "aws_lb_listener" "lb_ingress_http_prod" {
   load_balancer_arn = aws_lb.lb_ingress.arn
-  port              = 443
-  protocol          = "HTTPS"
-
-  ssl_policy      = "ELBSecurityPolicy-2016-08"
-  certificate_arn = data.aws_acm_certificate.ogn.arn
-
-  default_action {
-    type = "fixed-response"
-
-    fixed_response {
-      content_type = "text/plain"
-      status_code  = 404
-      message_body = "Not found on ALB."
-    }
-  }
-}
-
-resource "aws_lb_listener" "lb_ingress_http_test" {
-  load_balancer_arn = aws_lb.lb_ingress.arn
-  port              = 8443
-  protocol          = "HTTPS"
-
-  ssl_policy      = "ELBSecurityPolicy-2016-08"
-  certificate_arn = data.aws_acm_certificate.ogn.arn
+  port              = 80
+  protocol          = "HTTP"
 
   default_action {
     type = "fixed-response"
