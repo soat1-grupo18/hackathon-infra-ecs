@@ -1,5 +1,5 @@
 resource "aws_route53_zone" "private" {
-  name = "hackathon.fiap.local"
+  name = "internal.hackathon.fiap.com"
 
   vpc {
     vpc_id = module.vpc.vpc_id
@@ -8,7 +8,7 @@ resource "aws_route53_zone" "private" {
 
 resource "aws_route53_record" "alb" {
   zone_id = aws_route53_zone.private.zone_id
-  name    = "*.hackathon.fiap.local"
+  name    = "*.internal.hackathon.fiap.com"
   type    = "A"
 
   alias {
